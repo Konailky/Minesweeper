@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Cell()
+comment0.text=\r\n\ This\ constructor\ is\ complete\ and\ does\ not\ need\ modification\r\n
+comment1.params=
+comment1.target=boolean\ isBomb()
+comment1.text=\ This\ Method\ tells\ me\ if\ the\ cell\ is\ a\ bomb.\r\n\ \r\n\ @return\ True\ if\ it\ is\ a\ bomb,\ otherwse\ false.\r\n
+comment2.params=
+comment2.target=void\ checkCell()
+comment3.params=
+comment3.target=void\ displayValue()
+comment4.params=
+comment4.target=javax.swing.JButton\ getButton()
+comment5.params=e
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+numComments=6
