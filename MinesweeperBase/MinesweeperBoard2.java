@@ -16,7 +16,6 @@ public class MinesweeperBoard2{
     int rows;
     int columns;
     int bombs;
-    int nums;
     public MinesweeperBoard2(int rows, int columns, int bombs){
         //Put the constructor here.
         this.rows = rows;
@@ -31,8 +30,9 @@ public class MinesweeperBoard2{
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
+
         addBombs(bombs);
+        addNums();
     }
 
     public MinesweeperBoard2(){
@@ -41,18 +41,45 @@ public class MinesweeperBoard2{
 
     public void addBombs(int bombs) {//throws Exception{
         for (int i = bombs; i >= 0; i--){
-            int index = (int)(Math.random() * (rows * columns));
-            board[index].value = -1;
+            int index = 15; //(int)(Math.random() * (rows * columns));
+            board[index - 1].setBomb();
         }
     }
 
     public void addNums(){
-        for (int i = bombs; i>= 0; i--){
-            if (board[i - 1].value == -1) {
-                
+        for (int i = 100; i >= 0; i--){
+            if (board[i].getValue() == -1){
+
             }
+
+            if (board[i].getValue() > 10 && board[i].getValue() <= 89) {
+                int num = 0;
+                if (board[i - 1].getValue() == -1){
+                    num ++;
+                }
+                if (board[i + 1].getValue() == -1){
+                    num ++;
+                }
+                if (board[i + 9].getValue() == -1){
+                    num ++;
+                }
+                if (board[i - 9].getValue() == -1){
+
+                }
+                if (board[i + 11].getValue() == -1){
+                    num ++;
+                }
+                if (board[i - 11].getValue() == -1){
+                    num ++;
+                }
+                board[i].getValue() = num;
+
+            }
+
         }
+
     }
+
 
     /**This method is used for testing and will be deleted if using the GUI.
      *  It is still required for all students.
@@ -61,7 +88,10 @@ public class MinesweeperBoard2{
         int i = 0;
         for (rows  = 0; rows < 10; rows++){
             for (columns = 0; columns < 10; columns++){
-                System.out.print(board[i].value + "   " );
+                if (board[i].getValue() == -1){
+                    System.out.print("x");
+                }
+                System.out.print(board[i].getValue() + "   " );
                 i++;
             }
             System.out.println();
