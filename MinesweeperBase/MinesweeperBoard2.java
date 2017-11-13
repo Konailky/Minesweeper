@@ -16,6 +16,7 @@ public class MinesweeperBoard2{
     int rows;
     int columns;
     int bombs;
+
     public MinesweeperBoard2(int rows, int columns, int bombs){
         //Put the constructor here.
         this.rows = rows;
@@ -40,46 +41,78 @@ public class MinesweeperBoard2{
     }
 
     public void addBombs(int bombs) {//throws Exception{
-        for (int i = bombs; i >= 0; i--){
-            int index = 15; //(int)(Math.random() * (rows * columns));
-            board[index - 1].setBomb();
+        for (int i = bombs; i > 0; i--){
+            int index = (int)(Math.random() * (rows * columns) );
+            if(board[index].getValue() == -1){
+                i++;
+            }
+            else{
+                board[index].setBomb();
+            }
         }
     }
 
     public void addNums(){
-        for (int i = 100; i >= 0; i--){
-            if (board[i].getValue() == -1){
+        for (int i = 0 ; i <= rows*columns; i++){
+            int index = 0;
+
+            if(board[index].getValue() != -1){
+
+                if (board[index - 1].getValue() >= 0 && board[index - 1].getValue() == -1) {
+                    //Checks the left one
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index + 1].getValue() <= (rows*columns) && board[index + 1].getValue() == -1 ){
+                    //checks the right one
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index - rows].getValue() > 0 && board[index - rows].getValue() == -1){
+                    //Checks the one above
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index + rows].getValue() < (rows*columns)){
+                    //Chcks the bottom one
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index - rows - 1].getValue() > 0 ){
+                    //Checks the up, left diagnol
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index - rows + 1].getValue() > 0){
+                    //Checks the up, right diagnol
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index + rows -1].getValue() < (rows*columns)){
+                    //Checks the down, left diagnol
+                    board[index].addValue();
+                    index++;
+                }
+
+                if (board[index + rows + 1].getValue() < (rows*columns)){
+                    //Checks the down, right diagnol
+                    board[index].addValue();
+                    index++;
+                }
 
             }
 
-            if (board[i].getValue() > 10 && board[i].getValue() <= 89) {
-                int num = 0;
-                if (board[i - 1].getValue() == -1){
-                    num ++;
-                }
-                if (board[i + 1].getValue() == -1){
-                    num ++;
-                }
-                if (board[i + 9].getValue() == -1){
-                    num ++;
-                }
-                if (board[i - 9].getValue() == -1){
-
-                }
-                if (board[i + 11].getValue() == -1){
-                    num ++;
-                }
-                if (board[i - 11].getValue() == -1){
-                    num ++;
-                }
-                board[i].getValue() = num;
-
+            else{
+                //If the index is a bomb, do nothing
             }
-
         }
-
     }
-
 
     /**This method is used for testing and will be deleted if using the GUI.
      *  It is still required for all students.
@@ -89,10 +122,14 @@ public class MinesweeperBoard2{
         for (rows  = 0; rows < 10; rows++){
             for (columns = 0; columns < 10; columns++){
                 if (board[i].getValue() == -1){
-                    System.out.print("x");
+                    System.out.print("x" + "   ");
+                    i++;
                 }
-                System.out.print(board[i].getValue() + "   " );
-                i++;
+                else{
+                    System.out.print(board[i].getValue() + "   " );
+                    i++;
+                }
+
             }
             System.out.println();
         }
@@ -108,3 +145,4 @@ public class MinesweeperBoard2{
     }
 
 }
+
