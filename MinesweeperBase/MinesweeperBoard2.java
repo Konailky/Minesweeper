@@ -37,13 +37,13 @@ public class MinesweeperBoard2{
     }
 
     public MinesweeperBoard2(){
-        this(10,10,10);
+        this(10,10,99);
     }
 
     public void addBombs(int bombs) {//throws Exception{
         for (int i = bombs; i > 0; i--){
             int index = (int)(Math.random() * (rows * columns) );
-            if(board[index].getValue() == -1){
+            if(board[index].isBomb()){
                 i++;
             }
             else{
@@ -55,56 +55,58 @@ public class MinesweeperBoard2{
     public void addNums(){
         for (int i = 0 ; i <= rows*columns; i++){
             int index = 0;
+            int num = 0;
 
-            if(board[index].getValue() != -1){
+            if(board[index].isBomb() == false){
 
-                if (board[index - 1].getValue() >= 0 && board[index - 1].getValue() == -1) {
+                if (index - 1 >= 0 && board[index - 1].isBomb() ){
                     //Checks the left one
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index + 1].getValue() <= (rows*columns) && board[index + 1].getValue() == -1 ){
+                if (index + 1 < (rows*columns) && board[index + 1].isBomb()){
                     //checks the right one
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index - rows].getValue() > 0 && board[index - rows].getValue() == -1){
+                if (index - rows > 0 && board[index - rows].isBomb()){
                     //Checks the one above
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index + rows].getValue() < (rows*columns)){
+                if (index + rows < (rows*columns) && board[index + rows].isBomb()){
                     //Chcks the bottom one
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index - rows - 1].getValue() > 0 ){
+                if (index - rows - 1 > 0 && board[index - rows - 1].isBomb()){
                     //Checks the up, left diagnol
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index - rows + 1].getValue() > 0){
+                if (index - rows + 1 > 0  && board[index - rows + 1].isBomb()){
                     //Checks the up, right diagnol
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index + rows -1].getValue() < (rows*columns)){
+                if (index + rows -1 < (rows*columns) && board[index - + rows - 1].isBomb() ){
                     //Checks the down, left diagnol
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
 
-                if (board[index + rows + 1].getValue() < (rows*columns)){
+                if (index + rows + 1 < (rows*columns) && board[index + rows + 1].isBomb()){
                     //Checks the down, right diagnol
-                    board[index].addValue();
+                    num ++;
                     index++;
                 }
+                board[index].setValue(num); //Put the value into the cell
 
             }
 
@@ -121,7 +123,7 @@ public class MinesweeperBoard2{
         int i = 0;
         for (rows  = 0; rows < 10; rows++){
             for (columns = 0; columns < 10; columns++){
-                if (board[i].getValue() == -1){
+                if (board[i].isBomb()){
                     System.out.print("x" + "   ");
                     i++;
                 }
