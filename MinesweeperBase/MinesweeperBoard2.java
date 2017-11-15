@@ -53,65 +53,58 @@ public class MinesweeperBoard2{
     }
 
     public void addNums(){
-        for (int i = 0 ; i <= rows*columns; i++){
+        for (int i = 0 ; i < (rows*columns); i++){
             int index = 0;
-            int num = 0;
 
-            if(board[index].isBomb() == false){
-
-                if (index - 1 >= 0 && board[index - 1].isBomb() ){
-                    //Checks the left one
-                    num ++;
-                    index++;
+            if(board[i].isBomb() == true){
+                //The Left one
+                index = i - 1;
+                if(index % columns == 0 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index + 1 < (rows*columns) && board[index + 1].isBomb()){
-                    //checks the right one
-                    num ++;
-                    index++;
+                //The Right one
+                index = i + 1;
+                if (index % columns <= 9 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index - rows > 0 && board[index - rows].isBomb()){
-                    //Checks the one above
-                    num ++;
-                    index++;
+                //The Top one
+                index = i - columns;
+                if (index % columns > 0 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index + rows < (rows*columns) && board[index + rows].isBomb()){
-                    //Chcks the bottom one
-                    num ++;
-                    index++;
+                //The Bottom one
+                index = i + columns;
+                if (index % columns < 9 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index - rows - 1 > 0 && board[index - rows - 1].isBomb()){
-                    //Checks the up, left diagnol
-                    num ++;
-                    index++;
+                //The Top Left one
+                index = i - columns - 1;
+                if (index % columns > 0 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index - rows + 1 > 0  && board[index - rows + 1].isBomb()){
-                    //Checks the up, right diagnol
-                    num ++;
-                    index++;
+                //The Top Right one
+                index = i - columns + 1;
+                if (index % columns > 0 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index + rows -1 < (rows*columns) && board[index - + rows - 1].isBomb() ){
-                    //Checks the down, left diagnol
-                    num ++;
-                    index++;
+                //The Bottom Left one
+                index = i + columns - 1;
+                if (index % columns < 9 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
 
-                if (index + rows + 1 < (rows*columns) && board[index + rows + 1].isBomb()){
-                    //Checks the down, right diagnol
-                    num ++;
-                    index++;
+                // The Bottom Right one
+                index = i + columns + 1;
+                if (index % columns < 9 && board[index].isBomb() == false){
+                    board[index].addValue();
                 }
-                board[index].setValue(num); //Put the value into the cell
 
-            }
-
-            else{
-                //If the index is a bomb, do nothing
             }
         }
     }
