@@ -37,7 +37,7 @@ public class MinesweeperBoard2{
     }
 
     public MinesweeperBoard2(){
-        this(10,10,99);
+        this(10,10,10);
     }
 
     public void addBombs(int bombs) {//throws Exception{
@@ -57,55 +57,56 @@ public class MinesweeperBoard2{
             int index = 0;
 
             if(board[i].isBomb() == true){
-                //The Left one
-                index = i - 1;
-                if(index % columns == 0 && board[index].isBomb() == false){
-                    board[index].addValue();
-                }
-
-                //The Right one
-                index = i + 1;
-                if (index % columns <= 9 && board[index].isBomb() == false){
-                    board[index].addValue();
-                }
-
-                //The Top one
-                index = i - columns;
-                if (index % columns > 0 && board[index].isBomb() == false){
-                    board[index].addValue();
-                }
-
-                //The Bottom one
-                index = i + columns;
-                if (index % columns < 9 && board[index].isBomb() == false){
-                    board[index].addValue();
-                }
-
                 //The Top Left one
                 index = i - columns - 1;
-                if (index % columns > 0 && board[index].isBomb() == false){
+                if (index >= 0 && i % columns != 0){
                     board[index].addValue();
                 }
 
                 //The Top Right one
                 index = i - columns + 1;
-                if (index % columns > 0 && board[index].isBomb() == false){
+                if (index >= 0 && index % columns != 9 && board[index].getValue() != -1 ){
                     board[index].addValue();
                 }
 
                 //The Bottom Left one
                 index = i + columns - 1;
-                if (index % columns < 9 && board[index].isBomb() == false){
+                if (index <= (rows*columns - 1) && index % columns <= i % columns  && board[index].getValue() != -1){
                     board[index].addValue();
                 }
 
                 // The Bottom Right one
                 index = i + columns + 1;
-                if (index % columns < 9 && board[index].isBomb() == false){
+                if (index <= (rows*columns - 1) && index % columns >= i % columns && index <= (rows*columns -1) && board[index].getValue() != -1){
+                    board[index].addValue();
+                }
+
+                //The Top one
+                index = i - columns;
+                if (index >= 0 && index % columns == i % columns  && board[index].getValue() != -1){
+                    board[index].addValue();
+                }
+
+                //The Bottom one
+                index = i + columns;
+                if (index <= (rows*columns - 1) && index % columns == i % columns  && board[index].getValue() != -1){
+                    board[index].addValue();
+                }
+
+                //The Left one
+                index = i - 1;
+                if(index >= 0 && index % columns != 0 && board[index].getValue() != -1){
+                    board[index].addValue();
+                }
+
+                //The Right one
+                index = i + 1;
+                if (index <= (rows*columns - 1) && index % columns <= 9 && board[index].getValue() != -1){
                     board[index].addValue();
                 }
 
             }
+
         }
     }
 
