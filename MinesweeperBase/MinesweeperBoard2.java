@@ -59,13 +59,13 @@ public class MinesweeperBoard2{
             if(board[i].isBomb() == true){
                 //The Top Left one
                 index = i - columns - 1;
-                if (index >= 0 && i % columns != 0){
+                if (index >= 0 && i % columns != 0 && board[index].getValue() != -1){
                     board[index].addValue();
                 }
 
                 //The Top Right one
                 index = i - columns + 1;
-                if (index >= 0 && index % columns != 9 && board[index].getValue() != -1 ){
+                if (index >= 0 && index % columns != columns - 1 && board[index].getValue() != -1 ){
                     board[index].addValue();
                 }
 
