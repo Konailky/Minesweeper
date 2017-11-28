@@ -37,7 +37,7 @@ public class MinesweeperBoard2{
     }
 
     public MinesweeperBoard2(){
-        this(10,10,96);
+        this(10,10,10);
     }
 
     public void addBombs(int bombs) {//throws Exception{
