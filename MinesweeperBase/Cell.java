@@ -51,16 +51,20 @@ public class Cell implements ActionListener{
     public int getValue(){
         return value;
     }
+
     public void setBomb(){
         value = -1;
     }
+
     public void setValue(int num){
         value = num;
     }
-    public void addValue(){
-        value++;
-    }
 
+    public void addValue(){
+        if (value != -1){
+            value++;
+        } 
+    }
 
     //The following methods are used for the User Inferface. These methods are fully functional and do not need to be modified.
     public void checkCell(){
