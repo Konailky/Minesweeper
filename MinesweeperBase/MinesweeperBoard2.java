@@ -37,7 +37,7 @@ public class MinesweeperBoard2{
     }
 
     public MinesweeperBoard2(){
-        this(20,10,90);
+        this(20,10,10);
     }
 
     public void addBombs(int bombs) {//throws Exception{
@@ -56,8 +56,8 @@ public class MinesweeperBoard2{
         for (int i = 0 ; i < (rows*columns); i++){
             int index = 0;
 
-            if(board[i].isBomb() == true){
-                //The Top Left one
+            if(board[i].isBomb() == true ){
+                //The Top Left one*****************
                 index = i - columns - 1;
                 if (index > 0 &&  index % columns != 0  ){
                     board[index].addValue();
@@ -65,43 +65,43 @@ public class MinesweeperBoard2{
 
                 //The Top Right one
                 index = i - columns + 1;
-                if (index >= 0 &&  index % columns != (columns -1) % columns  ){
-                    board[index].addValue();
+                if (index > 0 &&  index % columns != (columns -1) % columns  ){
+                    board[index].addValue(); 
                 }
 
                 //The Bottom Left one
                 index = i + columns - 1;
-                if (index <= (rows*columns - 1) &&  index % columns != (columns -1) % columns ){
+                if (index < (rows*columns - 1) &&  index % columns != (columns -1) % columns ){
                     board[index].addValue();
                 }
 
-                // The Bottom Right one
+                // The Bottom Right one*************
                 index = i + columns + 1;
-                if (index <= (rows*columns - 1) &&   index % columns != 0 ){
+                if (index < (rows*columns - 1)  &&   index % columns != 0 ){
                     board[index].addValue();
                 }
 
                 //The Top one
                 index = i - columns;
-                if (index >= 0 &&  index % columns == i % columns  ){
+                if (index > 0 &&  index % columns == i % columns  ){
                     board[index].addValue();
                 }
 
                 //The Bottom one
                 index = i + columns;
-                if (index <= (rows*columns - 1) &&  index % columns == i % columns ){
+                if (index < (rows*columns - 1) &&  index % columns == i % columns ){
                     board[index].addValue();
                 }
 
                 //The Left one
                 index = i - 1;
-                if(index >= 0 &&  index % columns != (columns -1) % columns ){
+                if(index > 0 &&  index % columns != (columns -1) % columns ){
                     board[index].addValue();
                 }
 
                 //The Right one
                 index = i + 1;
-                if (index <= (rows*columns - 1)  && index % columns != 0){
+                if (index < (rows*columns - 1)  && index % columns != 0){
                     board[index].addValue();
                 }
 
