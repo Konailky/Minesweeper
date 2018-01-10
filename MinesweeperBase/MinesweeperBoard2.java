@@ -33,12 +33,12 @@ public class MinesweeperBoard2{
         frame.setVisible(true);
 
         addBombs(bombs);
-        addNums();
+        //addNums();
     }
 
     public MinesweeperBoard2(){
         //To run the program
-        this(10,10,10);
+        this(10,10,98);
     }
 
     public void addBombs(int bombs) {//throws Exception{
@@ -59,58 +59,16 @@ public class MinesweeperBoard2{
         for (int row = 0 ; row < (rows*columns); row++){
             for (int col = 0; col < (rows*columns); col++){
                 int index;
+                if (board[row][col].isBomb() == true){
+                    //If the index is a bomb, then add values to the surrounding indecies
 
-                if(board[row][col].isBomb() == true ){ 
-                    //The Top Left one
-                    index = (row*col) - columns - 1;
-                    if (index >= 0 &&  index % columns != (columns -1)   ){
-                        board[row][col].addValue();
+                    //Top Left
+                    index = board[row][col].getValue() - columns - 1;
+                    if(board[row][col].isBomb() == false && index % columns != 9  ){ 
+                        
                     }
 
-                    //The Top Right one
-                    index = (row*col) - columns + 1;
-                    if (index >= 0 &&  index % columns != 0  ){
-                        board[row][col].addValue(); 
-                    }
-
-                    //The Bottom Left one
-                    index = (row*col) + columns - 1;
-                    if (index <= (rows*columns - 1) &&  index % columns != (columns -1)   ){
-                        board[row][col].addValue();
-                    }
-
-                    // The Bottom Right one
-                    index = (row*col) + columns + 1;
-                    if (index <= (rows*columns - 1)  &&   index % columns != 0 ){
-                        board[row][col].addValue();
-                    }
-
-                    //The Top one
-                    index = (row*col) - columns;
-                    if (index >= 0   ){
-                        board[row][col].addValue();
-                    }
-
-                    //The Bottom one
-                    index = (row*col) + columns;
-                    if (index <= (rows*columns - 1)   ){
-                        board[row][col].addValue();
-                    }
-
-                    //The Left one
-                    index = (row*col) - 1;
-                    if(index >= 0 &&  index % columns != columns -1   ){
-                        board[row][col].addValue();
-                    }
-
-                    //The Right one
-                    index = (row*col) + 1;
-                    if (index <= (rows*columns - 1)  && index % columns != 0){
-                        board[row][col].addValue();
-                    }
-
-                }
-
+                }            
             }
         }
     }
@@ -119,6 +77,7 @@ public class MinesweeperBoard2{
      *  It is still required for all students.
      */
     public void printBoard(){
+        System.out.println("Minesweeper!");
         int i = 0;
         for (int row  = 0; row < rows; row++){
             for (int col = 0; col < columns; col++){

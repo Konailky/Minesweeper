@@ -51,6 +51,8 @@ public class Cell implements ActionListener{
     public int getValue(){
         return value;
     }
+    
+  
 
     public void setBomb(){
         value = -1;

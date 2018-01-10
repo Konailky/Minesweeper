@@ -1,0 +1,34 @@
+ if(board[row][col].isBomb() == true ){ 
+                    //The Top Left one
+                    index = 0;
+                    
+
+                    //The Top Right one
+                    index = (row*col) - columns + 1;
+                    
+
+                    //The Bottom Left one
+                    index = (row*col) + columns - 1;
+                    
+
+                    // The Bottom Right one
+                    index = (row*col) + columns + 1;
+                    
+
+                    //The Top one
+                    index = (row*col) - columns;
+                   
+
+                    //The Bottom one
+                    index = (row*col) + columns;
+                   
+
+                    //The Left one
+                    index = (row*col) - 1;
+                   
+
+                    //The Right one
+                    index = (row*col) + 1;
+                    
+
+                }
