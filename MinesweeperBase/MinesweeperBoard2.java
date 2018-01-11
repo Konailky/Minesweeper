@@ -38,7 +38,7 @@ public class MinesweeperBoard2{
 
     public MinesweeperBoard2(){
         //To run the program
-        this(10,10,98);
+        this(10,10,10);
     }
 
     public void addBombs(int bombs) {//throws Exception{
@@ -56,16 +56,50 @@ public class MinesweeperBoard2{
     }
 
     public void addNums(){ // Add numbers to make the game fun
-        for (int row = 0 ; row < (rows*columns); row++){
-            for (int col = 0; col < (rows*columns); col++){
-                int index;
+        for (int row = 0 ; row < (rows); row++){
+            for (int col = 0; col < (columns); col++){
+                
                 if (board[row][col].isBomb() == true){
                     //If the index is a bomb, then add values to the surrounding indecies
-
+                    
                     //Top Left
-                    index = board[row][col].getValue() - columns - 1;
-                    if(board[row][col].isBomb() == false && index % columns != 9  ){ 
-                        
+                    if( board[row-1][col-columns].getValue() != -1   ){ 
+                        board[row-1][col-columns].addValue();
+                    }
+
+                    //Top right
+                    if (board[row+1][col-columns].getValue() != -1 ){
+                        board[row+1][col-columns].addValue();
+                    }
+
+                    //Top
+                    if ( board[row][col-columns].getValue() != -1 ){
+                        board[row][col-columns].addValue();
+                    }
+
+                    //Bottom
+                    if ( board[row][col+columns].getValue() != -1 ){
+                        board[row][col+columns].addValue();
+                    }
+
+                    //Bottom left
+                    if (board[row-1][col+columns].getValue() != -1 ){
+                        board[row-1][col+columns].addValue();
+                    }
+
+                    //Bottom right
+                    if( board[row+1][col+columns].getValue() != -1 ){
+                        board[row+1][col+columns].addValue();
+                    }
+
+                    //Left
+                    if( board[row-1][col].getValue() != -1){
+                        board[row-1][col].addValue();
+                    }
+
+                    //Right
+                    if( board[row+1][col].getValue() != -1 ){
+                        board[row+1][col].addValue();
                     }
 
                 }            
