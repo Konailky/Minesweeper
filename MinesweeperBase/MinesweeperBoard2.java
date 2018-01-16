@@ -33,7 +33,7 @@ public class MinesweeperBoard2{
         frame.setVisible(true);
 
         addBombs(bombs);
-        //addNums();
+        addNums();
     }
 
     public MinesweeperBoard2(){
@@ -59,47 +59,47 @@ public class MinesweeperBoard2{
         for (int row = 0 ; row < (rows); row++){
             for (int col = 0; col < (columns); col++){
                 
-                if (board[row][col].isBomb() == true){
-                    //If the index is a bomb, then add values to the surrounding indecies
+                if (board[row][col].isBomb()){
+                    //If the index is a bomb, then add values to the surrounding indicies
                     
                     //Top Left
-                    if( board[row-1][col-columns].getValue() != -1   ){ 
-                        board[row-1][col-columns].addValue();
+                    if( board[row-rows][col -1].getValue() != -1 ){ 
+                        board[row-rows][col -1].addValue();
                     }
 
                     //Top right
-                    if (board[row+1][col-columns].getValue() != -1 ){
-                        board[row+1][col-columns].addValue();
+                    if (board[row+rows][col -1].getValue() != -1 ){
+                        board[row+rows][col -1 ].addValue();
                     }
 
                     //Top
-                    if ( board[row][col-columns].getValue() != -1 ){
-                        board[row][col-columns].addValue();
+                    if ( board[row-rows][col].getValue() != -1 ){
+                        board[row-rows][col].addValue();
                     }
 
                     //Bottom
-                    if ( board[row][col+columns].getValue() != -1 ){
-                        board[row][col+columns].addValue();
+                    if ( board[row+rows][col].getValue() != -1 ){
+                        board[row+rows][col].addValue();
                     }
 
                     //Bottom left
-                    if (board[row-1][col+columns].getValue() != -1 ){
-                        board[row-1][col+columns].addValue();
+                    if (board[row-rows][col+1].getValue() != -1){
+                        board[row-rows][col+1].addValue();
                     }
 
                     //Bottom right
-                    if( board[row+1][col+columns].getValue() != -1 ){
-                        board[row+1][col+columns].addValue();
+                    if( board[row+rows][col+1].getValue() != -1 ){
+                        board[row+rows][col+1].addValue();
                     }
 
                     //Left
-                    if( board[row-1][col].getValue() != -1){
-                        board[row-1][col].addValue();
+                    if( board[row][col-1].getValue() != -1 ){
+                        board[row][col-1].addValue();
                     }
 
                     //Right
-                    if( board[row+1][col].getValue() != -1 ){
-                        board[row+1][col].addValue();
+                    if( board[row][col+1].getValue() != -1 ){
+                        board[row][col+1].addValue();
                     }
 
                 }            
