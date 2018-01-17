@@ -61,44 +61,37 @@ public class MinesweeperBoard2{
                 
                 if (board[row][col].isBomb()){
                     //If the index is a bomb, then add values to the surrounding indicies
-                    
+                   
                     //Top Left
-                    if( board[row-rows][col -1].getValue() != -1 ){ 
-                        board[row-rows][col -1].addValue();
+                    if(row - 1 >= 0 && col - 1 >= 0  ){ 
+                        board[row-1][col-1].addValue();
                     }
-
                     //Top right
-                    if (board[row+rows][col -1].getValue() != -1 ){
-                        board[row+rows][col -1 ].addValue();
+                    if (row - 1 >= 0 && col + 1 < columns){
+                        board[row-1][col+1].addValue();
                     }
-
                     //Top
-                    if ( board[row-rows][col].getValue() != -1 ){
-                        board[row-rows][col].addValue();
+                    if (row - 1 >= 0 ){
+                        board[row-1][col].addValue();
                     }
-
                     //Bottom
-                    if ( board[row+rows][col].getValue() != -1 ){
-                        board[row+rows][col].addValue();
+                    if (row + 1 < rows ){
+                        board[row+1][col].addValue();
                     }
-
                     //Bottom left
-                    if (board[row-rows][col+1].getValue() != -1){
-                        board[row-rows][col+1].addValue();
+                    if (row + 1 < rows && col - 1 >= 0 ){
+                        board[row+1][col-1].addValue();
                     }
-
                     //Bottom right
-                    if( board[row+rows][col+1].getValue() != -1 ){
-                        board[row+rows][col+1].addValue();
+                    if(row +1 < rows && col + 1 < columns  ){
+                        board[row+1][col+1].addValue();
                     }
-
                     //Left
-                    if( board[row][col-1].getValue() != -1 ){
+                    if( col -1 >= 0  ){
                         board[row][col-1].addValue();
                     }
-
                     //Right
-                    if( board[row][col+1].getValue() != -1 ){
+                    if( col + 1 < columns  ){
                         board[row][col+1].addValue();
                     }
 
